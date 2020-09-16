@@ -4,35 +4,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Montagem_de_Curriculo</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Montagem_de_Curriculo</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+        <div class="navbar-fixed">
+            <nav class="teal darken-4">
+                <div class="nav-wrapper body-content">
+                    <a href="#" class="brand-logo">Montagem de Currículos</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                        <!--Se o Usuario não estiver Logado-->
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-controller="Usuarios" asp-action="Registro">Registrar</a></li>
+                            <li><a asp-controller="Usuarios" asp-action="Login">Login</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Curriculos" asp-action="Index">Meus Currículos</a></li>
+                            <li><a asp-controller="InformacoesLogin" asp-action="Index">Minhas Informações</a></li>
+                            <li><a asp-controller="Usuarios" asp-action="Logout">Logout</a></li>
+                        }
+
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
     <footer class="border-top footer text-muted">
@@ -41,7 +47,7 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

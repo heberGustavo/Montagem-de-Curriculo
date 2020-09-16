@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Montagem_de_Curriculo.Models;
+using Rotativa.AspNetCore;
 
 namespace Montagem_de_Curriculo
 {
@@ -20,15 +25,33 @@ namespace Montagem_de_Curriculo
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddRazorPages().AddRazorRuntimeCompilation(); //Executar ao Atualizar
+
+            /*Conexão do banco*/
+            services.AddDbContext<Contexto>(x => x.UseSqlServer(Configuration.GetConnectionString("ConexaoDB")));
+
+            /*Configuração Sessão*/
+            services.AddSession(opcoes =>
+            {
+                //Tempo de duração
+                //opcoes.IdleTimeout = TimeSpan.FromDays(1);
+                opcoes.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
+
+            /*Configuração da Autenticação*/
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opcoes =>
+                {
+                    opcoes.LoginPath = "/Usuarios/Login";
+                });
+
+            /*Para usar as sessões é necessario injetar dependencias da Classe HttpContextAccessor*/
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -38,9 +61,21 @@ namespace Montagem_de_Curriculo
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            /* Necessarios*/
+            app.UseAuthentication();
+            app.UseSession();
+
+            /* PARA EXPORTAR PARA PDF
+             * 
+             * Pacote instalado = Install-Package Rotativa.AspNetCore -Version 1.2.0-beta
+             * Link arquivos = https://github.com/webgio/Rotativa;
+            */
+
+            RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -52,7 +87,7 @@ namespace Montagem_de_Curriculo
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Usuarios}/{action=Registro}/{id?}");
             });
         }
     }
