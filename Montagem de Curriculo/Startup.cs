@@ -54,15 +54,22 @@ namespace Montagem_de_Curriculo
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            /*Criação do Banco de Dados*/
+            using (var escopo = app.ApplicationServices.GetRequiredService<IServiceProvider>().CreateScope())
             {
-                app.UseDeveloperExceptionPage();
+                var contexto = escopo.ServiceProvider.GetRequiredService<Contexto>();
+                contexto.Database.EnsureCreated(); /*Se dar o comando de insert e a tabela não tiver criada, com esse comando ela é criada automaticamente*/
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
+
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                }
+                else
+                {
+                    app.UseExceptionHandler("/Home/Error");
+                    app.UseHsts();
+                }
 
             /* Necessarios*/
             app.UseAuthentication();

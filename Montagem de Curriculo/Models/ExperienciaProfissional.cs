@@ -27,7 +27,7 @@ namespace Montagem_de_Curriculo.Models
         public int AnoFim { get; set; }
 
         [Required(ErrorMessage = "Campo obrigátorio!")]
-        [StringLength(50, ErrorMessage = "Use menos caracteres!")]
+        [StringLength(500, ErrorMessage = "Use menos caracteres!")]
         [DataType(DataType.MultilineText)]
         public string DescricaoAtividades { get; set; }
 
