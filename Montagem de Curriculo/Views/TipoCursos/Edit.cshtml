@@ -1,0 +1,32 @@
+﻿@model Montagem_de_Curriculo.Models.TipoCurso
+
+@{
+    ViewData["Title"] = "Atualizar " + Model.Tipo;
+}
+
+<div class="formulario">
+    <h4>Atualizar @Model.Tipo</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="TipoCursoId" />
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="Tipo" id="Tipo" type="text" class="validade" />
+                        <label for="Tipo">Tipo de Curso</label>
+                        <span asp-validation-for="Tipo" class="red-text darken-3"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" value="Atualizar" class="btn btn-small green darken-1" /> &nbsp;
+                    <a asp-action="Index">Voltar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
