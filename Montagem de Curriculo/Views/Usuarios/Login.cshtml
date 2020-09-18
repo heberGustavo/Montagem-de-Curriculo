@@ -1,0 +1,43 @@
+﻿@model Montagem_de_Curriculo.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="formulario">
+
+    <h5>Login de Usuário</h5>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="Email" id="Email" type="email" class="validade" />
+                        <label for="Email">Email</label>
+                        <span asp-validation-for="Email" class="red-text darken-3"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="Senha" id="Senha" type="password" class="validade" />
+                        <label for="Senha">Senha</label>
+                        <span asp-validation-for="Senha" class="red-text darken-3"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" value="Logar" asp-action="Login" class="btn btn-small green darken-1" /> &nbsp;
+                    <a asp-action="Registro" asp-controller="Usuarios">Registrar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
