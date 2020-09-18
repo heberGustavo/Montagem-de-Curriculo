@@ -23,7 +23,7 @@ namespace Montagem_de_Curriculo.Mapeamento
             builder.HasMany(u => u.Curriculos).WithOne(u => u.Usuario).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(u => u.InformacoesLogin).WithOne(u => u.Usuario).OnDelete(DeleteBehavior.Cascade);
 
-            builder.ToTable("Usuarios")
+            builder.ToTable("Usuarios");
         }
     }
 }

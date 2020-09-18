@@ -10,7 +10,6 @@ namespace Montagem_de_Curriculo.Models
         [Required(ErrorMessage = "Campo obrigátorio!")]
         [StringLength(50, ErrorMessage = "Use menos caracteres!")]
         [EmailAddress(ErrorMessage = "Email inválido")]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo obrigátorio!")]
