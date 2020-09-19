@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Montagem_de_Curriculo.Models.Objetivo>
+
+@foreach (var item in Model)
+{
+    <li class="collection-item row">
+        <div class="valign-wrapper col s10">
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </div>
+        
+        <div>
+            <a asp-controller="Objetivos" asp-action="Edit" asp-route-id="@item.ObjetivoId" class="btn btn-floating btn-small blue darken-4">
+                <i class="material-icons">edit</i>
+            </a>
+            <a onclick="ExibirModal(@item.ObjetivoId)" class="btn btn-floating btn-small red darken-4">
+                <i class="material-icons">delete_forever</i>
+            </a>
+        </div>
+    </li>
+}
