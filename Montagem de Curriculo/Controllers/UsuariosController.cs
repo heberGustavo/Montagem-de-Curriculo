@@ -121,11 +121,22 @@ namespace Montagem_de_Curriculo.Controllers
             return View(login);
         }
 
-
-
-        private bool UsuarioExists(int id)
+        public async Task<IActionResult> Logout()
         {
-            return _context.Usuarios.Any(e => e.UsuarioId == id);
+            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear(); //Limpa as sessões
+
+            return RedirectToAction("Login", "Usuarios");
+        }
+
+        //Verifica se usuario existe
+        public JsonResult UsuarioExiste(string email)
+        {
+            //Se não encontrar o email, deixa cadastrar
+            if (!_context.Usuarios.Any(u => u.Email == email))
+                return Json(true);
+            else
+                return Json("Email existente");
         }
     }
 }
