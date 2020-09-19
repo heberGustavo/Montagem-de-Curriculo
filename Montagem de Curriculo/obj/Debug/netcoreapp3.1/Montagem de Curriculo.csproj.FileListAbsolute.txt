@@ -441,7 +441,6 @@ C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem 
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Montagem de Curriculo.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Montagem de Curriculo.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculos\Create.cshtml.g.cs
-C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculos\Delete.cshtml.g.cs
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculos\Details.cshtml.g.cs
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculos\Edit.cshtml.g.cs
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculos\Index.cshtml.g.cs

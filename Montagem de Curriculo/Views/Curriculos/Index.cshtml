@@ -1,41 +1,77 @@
 ﻿@model IEnumerable<Montagem_de_Curriculo.Models.Curriculo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Currículos cadastrados";
 }
 
-<h1>Index</h1>
+<h5>Currículos cadastrados</h5>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-small blue darken-2">Novo Currículo</a>
 </p>
-<table class="table">
+<table class="table striped hover highlight">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CurriculoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CurriculoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CurriculoId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CurriculoId" class="btn btn-small blue darken-2">Atualizar</a> |
+                    <a asp-action="Details" asp-route-id="@item.CurriculoId" class="btn btn-small deep-purple darken-4">Detalhes</a> |
+                    <a class="btn btn-small red darken-4 modal-trigger" onclick="ExibirModal(@item.CurriculoId)">Excluir</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<!-- Modal Exclusão -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Confirmar Exclusão</h4>
+        <p>Deseja prosseguir com a exclusão?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close btn red accent-4">Não</a>
+        <a class="modal-close btn green accent-4 btn-confirmar">Sim</a>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+    $(document).ready(function () {
+
+        $('.modal').modal();
+
+    });
+
+    function ExibirModal(id) {
+        $('#modal1').modal('open');
+
+        $('.btn-confirmar').on('click', function () {
+            $.ajax({
+                type: "POST",
+                url: "/Curriculos/Delete",
+                data: { id: id },
+                success: function () {
+                    alert("Exclusão realizada com sucesso!");
+                    location.reload();
+                }
+
+            });
+        });
+    }
+    </script>
+
+}
