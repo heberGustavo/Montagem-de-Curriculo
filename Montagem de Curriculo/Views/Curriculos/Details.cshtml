@@ -7,8 +7,8 @@
 <div>
     <ul class="collection with-header">
         <li class="colllection-header">
-            <h5 style="padding-left: 20px;">
-                Objetivos 
+            <h5 style="padding-left: 20px; padding-bottom: 10px; border-bottom: 1px solid #e2e2e2;">
+                Objetivos
                 <a asp-action="Create" asp-controller="Objetivos" asp-route-id="@Model.CurriculoId" class="btn btn-floating btn-small blue darken-4">
                     <i class="material-icons">add</i>
                 </a>
@@ -18,3 +18,46 @@
         @await Component.InvokeAsync("Objetivos", Model.CurriculoId)
     </ul>
 </div>
+
+<!-- Modal Exclusão -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Confirmar Exclusão</h4>
+        <p>Deseja prosseguir com a exclusão?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close btn red accent-4">Não</a>
+        <a class="modal-close btn green accent-4 btn-confirmar">Sim</a>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $('.modal').modal();
+
+        });
+
+        //Recebendo um objeto, você consegue utilizar o mesmo modal para realizar varias exclusões
+        function ExibirModal(id, objeto) {
+            $('#modal1').modal('open');
+
+            var url = "/" + objeto + "/Delete";
+
+            $('.btn-confirmar').on('click', function () {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { id: id },
+                    success: function () {
+                        alert("Exclusão realizada com sucesso!");
+                        location.reload();
+                    }
+
+                });
+            });
+        }
+    </script>
+}

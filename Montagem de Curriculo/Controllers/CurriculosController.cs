@@ -52,6 +52,7 @@ namespace Montagem_de_Curriculo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CurriculoId,Nome,UsuarioId")] Curriculo curriculo)
         {
+            //Pega o ID do usuario e salva no Curriculo o ID como Chave Estrangeira
             curriculo.UsuarioId = int.Parse(HttpContext.Session.GetInt32("UsuarioId").ToString());
 
             if (ModelState.IsValid)
@@ -82,6 +83,7 @@ namespace Montagem_de_Curriculo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CurriculoId,Nome,UsuarioId")] Curriculo curriculo)
         {
+            //Pega o ID do usuario e salva no Curriculo o ID como Chave Estrangeira
             curriculo.UsuarioId = int.Parse(HttpContext.Session.GetInt32("UsuarioId").ToString());
 
             if (id != curriculo.CurriculoId)

@@ -11,7 +11,7 @@
             <a asp-controller="Objetivos" asp-action="Edit" asp-route-id="@item.ObjetivoId" class="btn btn-floating btn-small blue darken-4">
                 <i class="material-icons">edit</i>
             </a>
-            <a onclick="ExibirModal(@item.ObjetivoId)" class="btn btn-floating btn-small red darken-4">
+            <a onclick="ExibirModal(@item.ObjetivoId, 'Objetivos')" class="btn btn-floating btn-small red darken-4">
                 <i class="material-icons">delete_forever</i>
             </a>
         </div>
