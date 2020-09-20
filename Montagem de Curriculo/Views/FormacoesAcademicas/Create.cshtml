@@ -1,0 +1,60 @@
+﻿@model Montagem_de_Curriculo.Models.FormacaoAcademica
+
+@{
+    ViewData["Title"] = "Nova Formação Acadêmica";
+}
+
+<div class="formulario">
+
+    <h4>Nova Formação Acadêmica</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="Instituicao" id="Instituicao" type="text" class="validade" />
+                        <label for="Instituicao">Instituição</label>
+                        <span asp-validation-for="Instituicao" class="red-text darken-3"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="AnoInicio" id="AnoInicio" type="number" class="validade" />
+                        <label for="AnoInicio">Ano Inicio</label>
+                        <span asp-validation-for="AnoInicio" class="red-text darken-3"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="AnoFim" id="AnoFim" type="number" class="validade" />
+                        <label for="AnoFim">Ano Fim</label>
+                        <span asp-validation-for="AnoFim" class="red-text darken-3"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="NomeCurso" id="NomeCurso" type="text" class="validade" />
+                        <label for="NomeCurso">Nome do Curso</label>
+                        <span asp-validation-for="NomeCurso" class="red-text darken-3"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select asp-for="TipoCursoId" id="TipoCursoId" class="browser-default validade" asp-items="ViewBag.TipoCursoId"></select>
+                        <span asp-validation-for="NomeCurso" class="red-text darken-3"></span>
+                    </div>
+                </div>
+                
+                <input type="hidden" asp-for="CurriculoId"/>
+                <div class="row">
+                    <input type="submit" value="Salvar" class="btn btn-small green darken-1" /> &nbsp;
+                    <a asp-controller="Curriculos" asp-action="Details" asp-route-id="@Model.CurriculoId">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

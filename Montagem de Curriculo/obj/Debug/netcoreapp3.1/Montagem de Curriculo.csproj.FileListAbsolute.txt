@@ -453,3 +453,6 @@ C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem 
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Objetivos\Default.cshtml.g.cs
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Objetivos\Create.cshtml.g.cs
 C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Objetivos\Edit.cshtml.g.cs
+C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\FormacoesAcademicas\Default.cshtml.g.cs
+C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\FormacoesAcademicas\Create.cshtml.g.cs
+C:\Users\SuporteSQ-06\Desktop\projetos_heber\Git\Montagem de Curriculo\Montagem de Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\FormacoesAcademicas\Edit.cshtml.g.cs
