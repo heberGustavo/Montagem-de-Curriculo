@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Montagem_de_Curriculo.Models.ExperienciaProfissional>
+
+@foreach (var item in Model)
+{
+    <li class="collection-item row">
+        <div class="valign-wrapper col s10">
+            @Html.DisplayFor(modelItem => item.Cargo) em @Html.DisplayFor(modelItem => item.NomeEmpresa) | 
+            @Html.DisplayFor(modelItem => item.AnoInicio) - @Html.DisplayFor(modelItem => item.AnoFim)
+        </div>
+
+        <div>
+            <a asp-controller="ExperienciasProfissionais" asp-action="Edit" asp-route-id="@item.ExperienciaProfissionalId" class="btn btn-floating btn-small blue darken-4">
+                <i class="material-icons">edit</i>
+            </a>
+            <a onclick="ExibirModal(@item.ExperienciaProfissionalId, 'ExperienciasProfissionais')" class="btn btn-floating btn-small red darken-4">
+                <i class="material-icons">delete_forever</i>
+            </a>
+        </div>
+    </li>
+}

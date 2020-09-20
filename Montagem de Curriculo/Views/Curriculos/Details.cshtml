@@ -30,6 +30,19 @@
         <!--Chama a ViewComponent da Sessão-->
         @await Component.InvokeAsync("FormacoesAcademicas", Model.CurriculoId)
     </ul>
+
+    <ul class="collection with-header">
+        <li class="colllection-header">
+            <h5 style="padding-left: 20px; padding-bottom: 10px; border-bottom: 1px solid #e2e2e2;">
+                Experiências Profissionais
+                <a asp-action="Create" asp-controller="ExperienciasProfissionais" asp-route-id="@Model.CurriculoId" class="btn btn-floating btn-small blue darken-4">
+                    <i class="material-icons">add</i>
+                </a>
+            </h5>
+        </li>
+        <!--Chama a ViewComponent da Sessão-->
+        @await Component.InvokeAsync("ExperienciasProfissionais", Model.CurriculoId)
+    </ul>
 </div>
 
 <!-- Modal Exclusão -->

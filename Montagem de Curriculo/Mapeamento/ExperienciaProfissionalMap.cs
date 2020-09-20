@@ -20,7 +20,7 @@ namespace Montagem_de_Curriculo.Mapeamento
             builder.Property(e => e.AnoFim).IsRequired();
             builder.Property(e => e.DescricaoAtividades).IsRequired().HasMaxLength(500);
 
-            builder.HasOne(e => e.Curriculo).WithMany(e => e.ExperienciaProfissionals).HasForeignKey(e => e.ExperienciaProfissionalId);
+            builder.HasOne(e => e.Curriculo).WithMany(e => e.ExperienciaProfissionals).HasForeignKey(e => e.CurriculoId);
 
             builder.ToTable("ExperienciasProfissionais");
         }

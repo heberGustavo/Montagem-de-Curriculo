@@ -38,7 +38,7 @@ namespace Montagem_de_Curriculo.Controllers
                 //Armazena as Informações de Login
                 InformacaoLogin informacao = new InformacaoLogin
                 {
-                    UsuarioId = usuario.UsuarioId,
+                    UsuarioId = 2,
                     EnderecoIP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     Data = DateTime.Now.ToShortDateString(),
                     Horario = DateTime.Now.ToShortTimeString()

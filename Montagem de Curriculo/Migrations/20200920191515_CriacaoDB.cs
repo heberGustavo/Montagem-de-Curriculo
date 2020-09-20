@@ -12,7 +12,7 @@ namespace Montagem_de_Curriculo.Migrations
                 {
                     TipoCursoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tipo = table.Column<string>(nullable: false)
+                    Tipo = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,7 +79,8 @@ namespace Montagem_de_Curriculo.Migrations
                 name: "ExperienciasProfissionais",
                 columns: table => new
                 {
-                    ExperienciaProfissionalId = table.Column<int>(nullable: false),
+                    ExperienciaProfissionalId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NomeEmpresa = table.Column<string>(maxLength: 50, nullable: false),
                     Cargo = table.Column<string>(maxLength: 50, nullable: false),
                     AnoInicio = table.Column<int>(nullable: false),
@@ -91,8 +92,8 @@ namespace Montagem_de_Curriculo.Migrations
                 {
                     table.PrimaryKey("PK_ExperienciasProfissionais", x => x.ExperienciaProfissionalId);
                     table.ForeignKey(
-                        name: "FK_ExperienciasProfissionais_Curriculos_ExperienciaProfissionalId",
-                        column: x => x.ExperienciaProfissionalId,
+                        name: "FK_ExperienciasProfissionais_Curriculos_CurriculoId",
+                        column: x => x.CurriculoId,
                         principalTable: "Curriculos",
                         principalColumn: "CurriculoId",
                         onDelete: ReferentialAction.Cascade);
@@ -179,6 +180,11 @@ namespace Montagem_de_Curriculo.Migrations
                 name: "IX_Curriculos_UsuarioId",
                 table: "Curriculos",
                 column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExperienciasProfissionais_CurriculoId",
+                table: "ExperienciasProfissionais",
+                column: "CurriculoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FormacoesAcademicas_CurriculoId",

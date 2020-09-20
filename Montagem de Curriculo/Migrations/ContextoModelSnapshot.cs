@@ -46,7 +46,9 @@ namespace Montagem_de_Curriculo.Migrations
             modelBuilder.Entity("Montagem_de_Curriculo.Models.ExperienciaProfissional", b =>
                 {
                     b.Property<int>("ExperienciaProfissionalId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AnoFim")
                         .HasColumnType("int");
@@ -73,6 +75,8 @@ namespace Montagem_de_Curriculo.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("ExperienciaProfissionalId");
+
+                    b.HasIndex("CurriculoId");
 
                     b.ToTable("ExperienciasProfissionais");
                 });
@@ -205,7 +209,8 @@ namespace Montagem_de_Curriculo.Migrations
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("TipoCursoId");
 
@@ -253,7 +258,7 @@ namespace Montagem_de_Curriculo.Migrations
                 {
                     b.HasOne("Montagem_de_Curriculo.Models.Curriculo", "Curriculo")
                         .WithMany("ExperienciaProfissionals")
-                        .HasForeignKey("ExperienciaProfissionalId")
+                        .HasForeignKey("CurriculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
