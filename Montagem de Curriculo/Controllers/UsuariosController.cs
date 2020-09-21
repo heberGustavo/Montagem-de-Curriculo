@@ -34,11 +34,12 @@ namespace Montagem_de_Curriculo.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
+                await _context.SaveChangesAsync();
 
                 //Armazena as Informações de Login
                 InformacaoLogin informacao = new InformacaoLogin
                 {
-                    UsuarioId = 2,
+                    UsuarioId = usuario.UsuarioId,
                     EnderecoIP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     Data = DateTime.Now.ToShortDateString(),
                     Horario = DateTime.Now.ToShortTimeString()
