@@ -49,6 +49,7 @@
                     </div>
                 </div>
 
+                <input type="hidden" asp-for="CurriculoId" />
                 <div class="row">
                     <input type="submit" value="Atualizar" class="btn btn-small green darken-1" /> &nbsp;
                     <a asp-controller="Curriculos" asp-action="Details" asp-route-id="@Model.CurriculoId">Voltar</a>

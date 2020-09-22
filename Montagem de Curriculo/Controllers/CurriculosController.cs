@@ -21,7 +21,8 @@ namespace Montagem_de_Curriculo.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Curriculos.Include(c => c.Usuario);
+            var usuarioId = HttpContext.Session.GetInt32("UsuarioId");
+            var contexto = _context.Curriculos.Include(c => c.Usuario).Where(c => c.UsuarioId == usuarioId);
             return View(await contexto.ToListAsync());
         }
 
