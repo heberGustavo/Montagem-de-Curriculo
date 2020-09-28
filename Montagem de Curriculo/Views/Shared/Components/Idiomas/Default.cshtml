@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Montagem_de_Curriculo.Models.Idioma>
+
+@foreach (var item in Model)
+{
+    <li class="collection-item row">
+        <div class="valign-wrapper col s10">
+            @Html.DisplayFor(modelItem => item.Nome) - @Html.DisplayFor(modelItem => item.Nivel)
+        </div>
+
+        <div>
+            <a asp-controller="Idiomas" asp-action="Edit" asp-route-id="@item.IdiomaId" class="btn btn-floating btn-small blue darken-4">
+                <i class="material-icons">edit</i>
+            </a>
+            <a onclick="ExibirModal(@item.IdiomaId, 'Idiomas')" class="btn btn-floating btn-small red darken-4">
+                <i class="material-icons">delete_forever</i>
+            </a>
+        </div>
+    </li>
+}

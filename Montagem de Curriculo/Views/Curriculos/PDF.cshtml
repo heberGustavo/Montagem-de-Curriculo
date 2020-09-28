@@ -1,0 +1,76 @@
+﻿@model Montagem_de_Curriculo.ViewModels.CurriculoViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Currículo</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+
+    <h5>Objetivos</h5>
+    <hr />
+    <p>
+        <ul>
+            @foreach (var item in Model.Objetivos)
+            {
+                <li>@item.Descricao</li>
+            }
+        </ul>
+    </p>
+
+    <h5>Formações Acadêmicas</h5>
+    <hr />
+    <p>
+        <ul>
+            @foreach (var item in Model.FormacoesAcademicas)
+            {
+                <li>
+                    @item.TipoCurso em @item.NomeCurso,
+                    @item.Instituicao, @item.AnoInicio - @item.AnoFim
+                </li>
+            }
+        </ul>
+    </p>
+
+    <h5>Experiências Profissionais</h5>
+    <hr />
+    <p>
+        <ul>
+            @foreach (var item in Model.ExperienciasProfissionais)
+            {
+                <li>
+                    @item.Cargo em @item.NomeEmpresa,
+                    @item.AnoInicio - @item.AnoFim
+                    <br />
+                    @item.DescricaoAtividades
+                </li>
+            }
+        </ul>
+    </p>
+
+    <h5>Idiomas</h5>
+    <hr />
+    <p>
+        <ul>
+            @foreach (var item in Model.Idiomas)
+            {
+                <li>
+                    @item.Nome - @item.Nivel
+                </li>
+            }
+        </ul>
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@model Montagem_de_Curriculo.Models.Idioma
+
+@{
+    ViewData["Title"] = "Atualizar Idioma";
+}
+
+<div class="formulario">
+
+    <h4>Atualizar Idioma</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdiomaId" />
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="Nome" id="Nome" type="text" class="validade" />
+                        <label for="Nome">Nome</label>
+                        <span asp-validation-for="Nome" class="red-text darken-3"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input asp-for="Nivel" id="Nivel" type="text" class="validade" />
+                        <label for="Nivel">Nivel</label>
+                        <span asp-validation-for="Nivel" class="red-text darken-3"></span>
+                    </div>
+                </div>
+
+                <input asp-for="CurriculoId" type="hidden" />
+                <div class="row">
+                    <input type="submit" value="Salvar" class="btn btn-small green darken-1" /> &nbsp;
+                    <a asp-action="Index">Voltar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

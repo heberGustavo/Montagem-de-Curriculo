@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Montagem_de_Curriculo.Models;
+using Montagem_de_Curriculo.ViewModels;
+using Rotativa.AspNetCore;
 
 namespace Montagem_de_Curriculo.Controllers
 {
@@ -127,6 +129,19 @@ namespace Montagem_de_Curriculo.Controllers
         private bool CurriculoExists(int id)
         {
             return _context.Curriculos.Any(e => e.CurriculoId == id);
+        }
+
+        public IActionResult VisualizarPDF(int id)
+        {
+            var idUsuario = HttpContext.Session.GetInt32("UsuarioId");
+
+            CurriculoViewModel curriculo = new CurriculoViewModel();
+            curriculo.Objetivos = _context.Objetivos.Where(o => o.Curriculo.UsuarioId == idUsuario).ToList();
+            curriculo.FormacoesAcademicas = _context.FormacaoAcademicas.Include(f => f.TipoCurso).Where(f => f.Curriculo.UsuarioId == idUsuario).ToList();
+            curriculo.ExperienciasProfissionais = _context.ExperienciasProfissionais.Where(e => e.Curriculo.UsuarioId == idUsuario).ToList();
+            curriculo.Idiomas = _context.Idiomas.Where(i => i.Curriculo.UsuarioId == idUsuario).ToList();
+
+            return new ViewAsPdf("PDF", curriculo) { FileName = "Curriculo_.pdf" };
         }
     }
 }

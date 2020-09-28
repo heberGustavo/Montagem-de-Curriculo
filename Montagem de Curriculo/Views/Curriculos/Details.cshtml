@@ -4,6 +4,11 @@
     ViewData["Title"] = "Currículo " + Model.Nome;
 }
 
+<div class="col s2">
+    <h5>Currículo @Model.Nome</h5>&nbsp;
+    <a class="btn red darken-4" asp-controller="Curriculos" asp-action="VisualizarPDF" asp-route-id="@Model.CurriculoId">PDF</a>
+</div>
+
 <div>
     <ul class="collection with-header">
         <li class="colllection-header">
@@ -43,6 +48,21 @@
         <!--Chama a ViewComponent da Sessão-->
         @await Component.InvokeAsync("ExperienciasProfissionais", Model.CurriculoId)
     </ul>
+
+    <ul class="collection with-header">
+        <li class="colllection-header">
+            <h5 style="padding-left: 20px; padding-bottom: 10px; border-bottom: 1px solid #e2e2e2;">
+                Idiomas
+                <a asp-action="Create" asp-controller="Idiomas" asp-route-id="@Model.CurriculoId" class="btn btn-floating btn-small blue darken-4">
+                    <i class="material-icons">add</i>
+                </a>
+            </h5>
+        </li>
+        <!--Chama a ViewComponent da Sessão-->
+        @await Component.InvokeAsync("Idiomas", Model.CurriculoId)
+    </ul>
+
+
 </div>
 
 <!-- Modal Exclusão -->
